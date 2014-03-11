@@ -1,7 +1,7 @@
 ---
 layout: page
-title: NodRest!
-tagline: Node Rest Service
+title: Hello World!
+tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
