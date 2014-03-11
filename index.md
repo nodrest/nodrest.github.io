@@ -23,6 +23,7 @@ tagline: Node Rest Service
 ## API格式
 
 [Hypertext Application Language][hal]
+[JSON API][json-api]
 
 
 
@@ -34,3 +35,8 @@ tagline: Node Rest Service
 [gruntjs]: http://gruntjs.com/
 [mean.io]: http://www.mean.io/
 [HAL]: https://github.com/nodrest/hal_specification
+[json-api]: https://github.com/nodrest/json-api
+[jsend]: http://labs.omniti.com/labs/jsend
+[oData]:http://www.odata.org/documentation/odata-version-2-0/json-format/
+[Standard JSON Response for Rails and jQuery]:http://paydrotalks.com/posts/45-standard-json-response-for-rails-and-jquery/
+[json-schem]: http://json-schema.org/
