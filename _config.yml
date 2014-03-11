@@ -11,9 +11,9 @@ pygments: true
 title : NodRest
 tagline: Node Rest Service
 author :
-  name : Ber Ge
+  name : Nosy
   email : wohugb@gmail.com
-  github : wohugb
+  github : nodrest
   twitter : wohugb
   feedburner : wohugb
 
@@ -82,13 +82,13 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : jekyllbootstrap
+      short_name : wohugb
     livefyre :
-      site_id : 123
+      site_id : wohugb
     intensedebate :
-      account : 123abc
+      account : wohugb
     facebook :
-      appid : 123
+      appid : wohugb
       num_posts: 5
       width: 580
       colorscheme: light

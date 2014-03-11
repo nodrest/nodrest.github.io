@@ -22,6 +22,10 @@ tagline: Node Rest Service
   {% endfor %}
 </ul>
 
+## 测试
+
+`vows` `grunt`
+
 ## 相关文档
 
 <ul class="posts">

@@ -26,6 +26,8 @@ tagline: Node Rest Service
 
 `vows` `grunt`
 
+## API格式
+
 ## 相关文档
 
 <ul class="posts">
