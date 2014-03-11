@@ -1,7 +1,7 @@
 ---
 layout: page
-title : 文档
-header : 发布文档
+title : Archive
+header : Post Archive
 group: navigation
 ---
 {% include JB/setup %}

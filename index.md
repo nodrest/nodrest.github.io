@@ -1,6 +1,6 @@
 ---
 layout: page
-title: NodRest!
+title: Node Restful OAuth API
 tagline: Node Rest Service
 ---
 {% include JB/setup %}
@@ -16,12 +16,6 @@ tagline: Node Rest Service
 
 [restify-oauth2][]
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
-
 ## 测试
 
 [api-easy][] [api-easy][] [gruntjs][]
@@ -30,13 +24,8 @@ tagline: Node Rest Service
 
 [Hypertext Application Language][hal]
 
-## 相关文档
 
-<ul class="posts">
-  {% for post in site.posts %}
-    <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  {% endfor %}
-</ul>
+
 
 [restify-oauth2]: https://github.com/nodrest/restify-oauth2
 [node-restify]: https://github.com/nodrest/node-restify

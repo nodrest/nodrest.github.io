@@ -1,7 +1,7 @@
 ---
 layout: page
-title: 标签
-header: 文档标签
+title: Tags
+header: Posts By Tag
 group: navigation
 ---
 {% include JB/setup %}

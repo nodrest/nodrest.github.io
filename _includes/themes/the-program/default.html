@@ -25,8 +25,7 @@
 						<li class="page"><a href="/pages.html">页面</a></li>
 						<li class="category"><a href="/categories.html">分类</a></li>
 						<li class="tag"><a href="/tags.html">标签</a></li>
-						<li class="forkme"><div><iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=plusjade&repo=jekyll-bootstrap&type=fork&count=true"
-									allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe></div></li>
+						<li class="forkme"><div></div></li>
 					</ul>
 				</nav>
 			</div><!-- unit-inner -->
@@ -45,17 +44,27 @@
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
-					<h4>关于</h4>
+					<h5>关于</h5>
 					<ul>
 						<li class="contact"><address><span class="author fn n">{{ site.author.name }}</span> - <span class="fn email">{{ site.author.email }}</span></address></li>
 						<li class="github"><a href="http://github.com/{{ site.author.github }}/" rel="me">github.com/{{ site.author.github }}</a></li>
 						<li class="twitter"><a href="http://twitter.com/{{ site.author.twitter }}/" rel="me">twitter.com/{{ site.author.twitter }}</a></li>
-						<li class="rss"><a href="http://feeds.feedburner.com/{{ site.author.feedname }}">Subscribe to RSS Feed</a></li>
+						<li class="rss"><a href="http://feeds.feedburner.com/{{ site.author.feedname }}">订阅RSS Feed</a></li>
 					</ul>
-				</div><!-- misc -->
+				</div>
+				<div class="misc posts">
+				<h5>最新发布</h5>
+                <ul>
+                  {% for post in site.posts %}
+                    <li><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a> &raquo; <span>{{ post.date | date_to_string }}</span></li>
+                  {% endfor %}
+                </ul>
+                </div>
+				<!-- misc -->
 				<p class="licence">
-					模板: <a href="http://layouts-the.me">the_minimum</a> based on <a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>.<br>
-					Powered by <a href="https://github.com/mojombo/jekyll">Jekyll</a>.
+    				<h5>技术支持</h5>
+					模板：基于<a href="http://jekyllbootstrap.com/">Jekyll-bootstrap</a>的<a href="https://github.com/jekyllbootstrap/theme-the-program">the_program</a>.<br>
+					引擎：<a href="https://github.com/mojombo/jekyll">Jekyll</a>.
 				</p>
 			</div><!-- unit-foot-inner -->
 		</div><!-- unit-foot -->
