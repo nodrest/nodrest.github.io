@@ -69,3 +69,28 @@
 		</div><!-- content -->
 	</div><!-- unit-inner -->
 </article>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.toc').toc({
+        title: "<h5>文档目录</h5>",
+        //listType: 'ul',
+        //noBackToTopLinks: false,
+        //showSpeed: 5
+    });
+});
+</script>
+<style>
+.clickable-header {
+  cursor:pointer;
+}
+.clickable-header:hover {
+  text-decoration:underline;
+}
+.top-level-header {
+  display:inline;
+}
+.back-to-top {
+  margin-left:5px;
+  cursor:pointer;
+}
+</style>
