@@ -4,11 +4,13 @@
 			<header>
 				<div class="unit-head">
 					<div class="unit-inner unit-head-inner">
-						<h1 class="h2 entry-title">{{ page.title }}</h1>
+						<h1 class="h2 entry-title">{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 					</div><!-- unit-inner -->
 				</div><!-- unit-head -->
 			</header>
-
+            <div class="date">
+                <span>{{ page.date | date_to_long_string }}</span>
+            </div>
 			<div class="bd">
 				<div class="entry-content">
 					{{ content }}
@@ -72,11 +74,26 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('.toc').toc({
-        title: "<h4>文档目录</h4>",
+        title: "<h5>文档目录</h5>",
         //listType: 'ul',
         //noBackToTopLinks: false,
         //showSpeed: 5
     });
+    var offset = 220;
+    var duration = 500;
+    jQuery(window).scroll(function() {
+        if (jQuery(this).scrollTop() > offset) {
+            jQuery('.bottom-to-top').fadeIn(duration);
+        } else {
+            jQuery('.bottom-to-top').fadeOut(duration);
+        }
+    });
+    
+    jQuery('.bottom-to-top').click(function(event) {
+        event.preventDefault();
+        jQuery('html, body').animate({scrollTop: 0}, duration);
+        return false;
+    })
 });
 </script>
 <style>
@@ -92,5 +109,20 @@ $(document).ready(function() {
 .back-to-top {
   margin-left:5px;
   cursor:pointer;
+}
+.bottom-to-top {
+    position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    color: #000000;
+    background-color: rgba(235, 235, 235, 0.80);
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+}
+
+.bottom-to-top:hover {    
+    background-color: rgba(135, 135, 135, 0.50);
 }
 </style>

@@ -1,12 +1,12 @@
 ---
 layout: post
 category : 文档
-tagline: "hal json 格式"
+title : HAL
+tagline : "超文本应用程序语言"
 tags : [hal, json, api, 格式]
 ---
-**HAL - 超文本应用程序语言**
 
-## 一个精干的超媒体类型
+# 一个精干的超媒体类型
 
 * __作者:__   [Mike Kelly][1] <[mike@stateless.co](mailto:mike@stateless.co)>
 * __创建:__  2011-06-13

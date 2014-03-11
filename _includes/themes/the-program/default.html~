@@ -43,6 +43,7 @@
 		</div><!-- unit-body -->
 	</div><!-- body -->
 	<footer class="the-footer">
+    	<div class="toc"></div>
 		<div class="unit-foot">
 			<div class="unit-inner unit-foot-inner">
 				<div class="misc vcard">
