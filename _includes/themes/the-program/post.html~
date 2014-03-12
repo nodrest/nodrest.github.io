@@ -79,22 +79,11 @@ $(document).ready(function() {
         //noBackToTopLinks: false,
         //showSpeed: 5
     });
-    var offset = 220;
-    var duration = 500;
-    jQuery(window).scroll(function() {
-        if (jQuery(this).scrollTop() > offset) {
-            jQuery('.bottom-to-top').fadeIn(duration);
-        } else {
-            jQuery('.bottom-to-top').fadeOut(duration);
-        }
-    });
-    
-    jQuery('.bottom-to-top').click(function(event) {
-        event.preventDefault();
-        jQuery('html, body').animate({scrollTop: 0}, duration);
-        return false;
-    })
 });
+//hljs.configure({tabReplace: '    '}); // 4 spaces
+// ... or
+//hljs.configure({tabReplace: '<span class="indent">\t</span>'});
+//hljs.initHighlightingOnLoad();
 </script>
 <style>
 .clickable-header {
@@ -110,19 +99,17 @@ $(document).ready(function() {
   margin-left:5px;
   cursor:pointer;
 }
-.bottom-to-top {
-    position: fixed;
-    bottom: 2em;
-    right: 0px;
-    text-decoration: none;
-    color: #000000;
-    background-color: rgba(235, 235, 235, 0.80);
-    font-size: 12px;
-    padding: 1em;
-    display: none;
+.highlight .lineno {
+        width: 2.2em;
+        color: #aaa;
+        background-color: #eee;
+        text-align: right;
+        padding-right: .3em;
+        font-size: 10pt;
+        font-family: monospace;
+        padding-top: .4em;
+        line-height: normal;
 }
 
-.bottom-to-top:hover {    
-    background-color: rgba(135, 135, 135, 0.50);
-}
+
 </style>
