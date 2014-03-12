@@ -1,7 +1,7 @@
 ---
 layout: post
 category : 文档
-title : HAL
+title : HAL规范
 tagline : "超文本应用程序语言"
 tags : [hal, json, api, 格式]
 ---
@@ -38,10 +38,10 @@ developers love.
 * [Discussion group (questions, feedback, etc)][2]
 
 ## 概述
-HAL provides a set of conventions for expressing hyperlinks in either
-JSON or XML.
 
-**The rest of a HAL document is just plain old JSON or XML.**
+HAL提供了在任何JSON或XML表示的超链接一组约定。
+
+**一个HAL文件的其余部分只是普通的老JSON或XML.**
 
 Instead of using ad-hoc structures, or spending valuable time designing
 your own format; you can adopt HAL's conventions and focus on building
@@ -54,7 +54,7 @@ through a web application to achieve their goals, whereas HAL is
 intended for helping 'automated actors' move through a web API to
 achieve their goals.
 
-Having said that, **HAL is actually very human-friendly too**. Its
+说了这么多, **HAL其实很人性化了**. Its
 conventions make the documentation for an API discoverable from the API
 messages themselves.  This makes it possible for developers to jump
 straight into a HAL-based API and explore its capabilities, without the
@@ -63,19 +63,15 @@ their journey.
 
 ## 实例
 
-The example below is how you might represent a collection of orders with
-hal+json. Things to look for:
+下面的例子是如何使用HAL+JSON表示订单的集合。 如下:
 
-* The URI of the main resource being represented ('/orders') expressed
-  with a self link
-* The 'next' link pointing to the next page of orders
-* A templated link called 'ea:find' for searching orders by id
-* The multiple 'ea:admin' link objects contained in an array
-* Two properties of the orders collection; 'currentlyProcessing' and
-  'shippedToday'
-* Embedded order resources with their own links and properties
-* The compact URI (curie) named 'ea' for expanding the name of the
-  links to their documentation URL
+* 被表示主资源的URI（'/orders'）用self链接表示
+* 'next'连接订单下一页
+* 模板链接调用'ea:find',通过id查找订单
+* 多个'ea:admin'链接对象被包含在一个数组里
+* 订单集合的两个属性; 'currentlyProcessing'和'shippedToday'
+* 嵌入式订单资源使用用自己的链接和属性
+* 命名为'ea'紧凑的URI(curie),扩展了链接的名称为它们的文档的URL
 
 ### application/hal+json
 ```javascript
@@ -124,31 +120,29 @@ hal+json. Things to look for:
 
 ## HAL模型
 
-The HAL conventions revolve around representing two simple concepts: _Resources_ and _Links_.
+该HAL约定围绕表示两个简单的概念: _Resources_ 和 _Links_.
 
 ### 资源
-Resources have:
+资源拥有:
 
-* Links (to URIs)
-* Embedded Resources (i.e. other resources contained within them)
-* State (your bog standard JSON or XML data)
+* 链接 (到URIs)
+* 内嵌资源 (例. 包含在其中的其他资源)
+* 状态 (您的沼泽是基于JSON或XML数据)
 
 ### 链接
-Links have:
+链接游泳:
 
-* A target (a URI)
-* A relation aka. 'rel' (the name of the link)
-* A few other optional properties to help with deprecation, content
-  negotiation, etc.
+* 目标 (一个URI)
+* 一个关系别名. 'rel' (链接名字)
+* 其他一些可选属性，以帮助折旧，内容协商等。
 
-Below is an image that roughly illustrates how a HAL representation is
-structured:
+下面的图像大致说明了HAL表示法的构造。
 
-![The HAL Information model][4]
+![HAL信息模型][4]
 
 ## 在API中如何使用HAL
-HAL is designed for building APIs in which clients navigate around the
-resources by following links.
+
+HAL设计用于构建API，在客户端中通过以下链接浏览周围的资源。
 
 Links are identfied by link realtions. Link realtions are the lifeblood
 of a hypermedia API: they are how you tell client developers about
@@ -158,38 +152,37 @@ they are how the code they write will select which link to traverse.
 Link relations are not just an identifying string in HAL, though. They
 are actually URLs, which developers can follow in order to read the
 documentation for a given link. This is what is known as
-"discoverability". The idea is that a developer can enter into your API,
+"可发现". The idea is that a developer can enter into your API,
 read through documentation for the available links, and then
-follow-their-nose through the API.
+跟踪它们的鼻子 through the API.
 
-HAL encourages the use of link relations to:
+HAL鼓励使用链接关系来:
 
-*   Identify links and embedded resources within the representation
-*   Infer the expected structure and meaning of target resources
-*   Signalling what requests and representations can be submitted to target resources
+*   在表示中识别链接和嵌入的资源
+*   推断目标资源的预期结构和含义
+*   发信号通知哪些请求及声明，可以提交到目标资源
 
 ## 如何服务HAL
-HAL has a media type for both the JSON and XML variants, whos names are
-`application/hal+json` and `application/hal+xml` respectively.
 
-When serving HAL over HTTP, the `Content-Type` of the response should
-contain the relevant media type name.
+HAL里包含着JSON和XML的变种媒体类型，whos的名称分别是`application/hal+json`和`application/hal+xml`。
+
+当在HTTP上供应HAL时，响应的`Content-Type`应该包含相关媒体类型名称。
 
 ## HAL文档架构
 
 ### 最小有效文档
-A HAL document must at least contain an empty resource.
+一个HAL文件必须至少包含一个空的资源。
 
-An empty JSON object:
+一个空的JSON对象：
 
 ```javascript
 {}
 ```
 
 ### 资源
-In most cases, resources should have a self URI
+在大多数情况下，资源应该有一个自己的URI
 
-Represened via a 'self' link:
+通过'self'链接表示：
 
 ```javascript
 {
@@ -200,10 +193,10 @@ Represened via a 'self' link:
 ```
 
 ### 链接
-Links must be contained directly within a resource:
 
-Links are represented as JSON object contained within a `_links` hash
-that must be a direct property of a resource object:
+链接必须直接包含在一个资源：
+
+链接被表示为包含在`_links`哈希里JSON对象，它必须是一个资源对象的直接属性的：
 
 ```javascript
 {
@@ -214,13 +207,11 @@ that must be a direct property of a resource object:
 ```
 
 #### 链接关系
-Links have a relation (aka. 'rel'). This indicates the semantic -
-the meaning - of a particular link.
+链接有一个关系 (别名. 'rel'). 这声明语义 - 意义 - 一个特定的链接。
 
-Link rels are the main way of distinguishing between a resource's links.
+链接rels是区分一种资源的的链接主要途径。
 
-It's basically just a key within the `_links` hash, associating the link meaning
-(the 'rel') with the link object that contains data like the actual 'href' value:
+它基本商是'_links'哈希的一个键值，关联链接的意义('rel') 连接对象包含如实际的'href'值的数据：
 
 ```javascript
 {
@@ -231,20 +222,13 @@ It's basically just a key within the `_links` hash, associating the link meaning
 ```
 
 #### API可发现性
-Link rels should be URLs which reveal documentation about the
-given link, making them "discoverable".  URLs are generally quite long
-and a bit nasty for use as keys. To get around this, HAL provides
-"CURIEs" which are basically named tokens that you can define in the
-document and use to express link relation URIs in a friendlier, more
-compact fashion i.e.  `ex:widget` instead of
-`http://example.com/rels/widget`. The details are available in the
-section on CURIEs a bit further down.
+
+链接rels的应该是它揭示给定链接的文档，使他们“发现”的网址。网址一般都相当长，有点讨厌用作键。为了解决这个问题, HAL提供了"CURIEs" which are basically named tokens that you can define in the document and use to express link relation URIs in a friendlier, more compact fashion i.e.  `ex:widget` instead of `http://example.com/rels/widget`. 详情可在再往下CURIEs一节找到。
 
 ### 使用相同的关系的表示多个链接
-A resource may have multiple links that share the same link relation.
+一个资源可以有多个链接，共享相同的链接关系。
 
-For link relations that may have multiple links, we use an array of
-links.
+对于可能有多个链接的链接关系中，我们使用的链接数组。
 
 ```javascript
 {
@@ -258,16 +242,13 @@ links.
 }
 ```
 
-**Note:** If you're unsure whether the link should be singular, assume it
-will be multiple. If you pick singular and find you need to change it,
-you will need to create a new link relation or face breaking existing
-clients.
+**注意:** 如果你不确定该链接是否应为单数，假设它会多个。 If you pick singular and find you need to change it,you will need to create a new link relation or face breaking existing clients.
 
 ### CURIEs
 
-"CURIE"s help providing links to resource documentation.
+"CURIE"s 帮助提供链接到资源文件。
 
-HAL gives you a reserved link relation 'curies' which you can use to hint at the location of resource documentation.
+HAL为您提供了一个保留的链接关系“居里”，你可以用它来暗示资源文件的位置。
 
 ```javascript
 "_links": {
@@ -285,25 +266,18 @@ HAL gives you a reserved link relation 'curies' which you can use to hint at the
 }
 ```
 
-There can be multiple links in the 'curies' section. They come with a 'name' and a templated 'href' which must
-contain the `{rel}` placeholder.
+There can be multiple links in the 'curies' section. They come with a 'name' and a templated 'href' which must contain the `{rel}` placeholder.
 
-Links in turn can then prefix their 'rel' with a CURIE name. Associating the `latest-posts` link with the `doc`
-documentation CURIE results in a link 'rel' set to `doc:latest-posts`.
+Links in turn can then prefix their 'rel' with a CURIE name. Associating the `latest-posts` link with the `doc` documentation CURIE results in a link 'rel' set to `doc:latest-posts`.
 
-To retrieve documentation about the `latest-posts` resource, the client will expand the associated CURIE link
-with the actual link's 'rel'. This would result in a URL `http://haltalk.herokuapp.com/docs/latest-posts` which
-is expected to return documentation about this resource.
+To retrieve documentation about the `latest-posts` resource, the client will expand the associated CURIE link with the actual link's 'rel'. This would result in a URL `http://haltalk.herokuapp.com/docs/latest-posts` which is expected to return documentation about this resource.
 
 
 ## 待续...
-This relatively informal specification of HAL is incomplete and still in
-progress. For now, if you would like to have a full understanding please
-read the [formal specification][13].
+This relatively informal specification of HAL is incomplete and still in progress. For now, if you would like to have a full understanding please read the [formal specification][13].
 
 ## RFC
-The JSON variant of HAL (application/hal+json) has now been published as
-an internet draft: [draft-kelly-json-hal][13].
+The JSON variant of HAL (application/hal+json) has now been published as an internet draft: [draft-kelly-json-hal][13].
 
 ## 致谢
 
