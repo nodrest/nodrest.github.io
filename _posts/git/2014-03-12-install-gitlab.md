@@ -293,6 +293,11 @@ sudo -u git -H chmod o-rwx config/database.yml
 {% endhighlight %}
 
 ## 安装Gems
+
+修改Gemfile：
+
+    source:http://ruby.taobao.org/
+
 {% highlight sh linenos %}
 cd /home/git/gitlab
 
