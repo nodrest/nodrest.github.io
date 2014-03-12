@@ -81,6 +81,8 @@ sudo apt-get install -y git-core
 git --version
 {% endhighlight %}
 
+## 源码Source安装
+
 是系统封装的Git太旧了？将其删除，并从源代码编译。
 
 {% highlight sh linenos %}
@@ -93,7 +95,7 @@ sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libs
 # 从源码下载编译
 cd /tmp
 curl --progress https://git-core.googlecode.com/files/git-1.8.5.2.tar.gz | tar xz
-cd git-1.8.5.2/
+cd git-1.9.0.0/
 make prefix=/usr/local all
 
 # 装入/usr/local/bin
@@ -112,6 +114,14 @@ sudo apt-get install -y postfix
 
 Then select 'Internet Site' and press enter to confirm the hostname.
 
+## 使用ppa安装
+
+{% highlight sh linenos %}
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
+{% endhighlight %}
+
 # 2. Ruby
 
 The use of ruby version managers such as [RVM](http://rvm.io/), [rbenv](https://github.com/sstephenson/rbenv) or [chruby](https://github.com/postmodern/chruby) with GitLab in production frequently leads to hard to diagnose problems. Version managers are not supported and we stronly advise everyone to follow the instructions below to use a system ruby.
@@ -119,14 +129,14 @@ The use of ruby version managers such as [RVM](http://rvm.io/), [rbenv](https://
 删除旧的的Ruby1.8如果存在
 
 {% highlight sh %}
-    sudo apt-get remove ruby1.8
+sudo apt-get remove ruby1.8
 {% endhighlight %}
 
 下载Ruby和编译:
 {% highlight sh linenos %}
 mkdir /tmp/ruby && cd /tmp/ruby
-curl --progress ftp://ftp.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p353.tar.gz | tar xz
-cd ruby-2.0.0-p353
+curl --progress http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p451.tar.gz | tar xz
+cd ruby-2.0.0-p451
 ./configure --disable-install-rdoc
 make
 sudo make install
@@ -134,7 +144,7 @@ sudo make install
 
 安装Bundler Gem:
 {% highlight sh %}
-    sudo gem install bundler --no-ri --no-rdoc
+sudo gem install bundler --no-ri --no-rdoc
 {% endhighlight %}
 
 # 3. 系统用户
@@ -142,7 +152,7 @@ sudo make install
 为Gitlab创建`git`用户:
 
 {% highlight sh %}
-    sudo adduser --disabled-login --gecos 'GitLab' git
+sudo adduser --disabled-login --gecos 'GitLab' git
 {% endhighlight %}
 
 # 4. GitLab shell
@@ -153,7 +163,7 @@ GitLab Shell是GitLab专门开发一个ssh访问和版本库管理软件。
 cd /home/git
 
 # Clone gitlab shell
-sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b v1.8.0
+sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-shell.git -b v1.8.1
 
 cd gitlab-shell
 
@@ -171,81 +181,84 @@ sudo -u git -H ./bin/install
 
 我们推荐PostgreSQL数据库. 为MySQL查看[MySQL设置向导](doc/install/database_mysql.md).
 {% highlight sh linenos %}
-# Install the database packages
-sudo apt-get install -y postgresql-9.1 postgresql-client libpq-dev
+# 安装数据库包
+sudo add-apt-repository ppa:chris-lea/postgresql-9.3
+sudo apt-get update
+sudo apt-get install -y postgresql-9.3 postgresql-client libpq-dev
 
-# Login to PostgreSQL
+# 登录PostgreSQL
 sudo -u postgres psql -d template1
 
-# Create a user for GitLab.
+# 为GitLab创建用户.
 template1=# CREATE USER git;
 
-# Create the GitLab production database & grant all privileges on database
+# 创建GitLab产品库 & 在数据库上授予的所有权限
 template1=# CREATE DATABASE gitlabhq_production OWNER git;
 
-# Quit the database session
+# 退出数据库对哈
 template1=# \q
 
-# Try connecting to the new database with the new user
+# 试着用新用户连接库
 sudo -u git -H psql -d gitlabhq_production
 {% endhighlight %}
 
 # 6. GitLab
+
 {% highlight sh %}
-# We'll install GitLab into home directory of the user "git"
+# 我们将GitLab到用户"git"主目录
 cd /home/git
 {% endhighlight %}
 ## 克隆源码
 {% highlight sh linenos %}
-# Clone GitLab repository
+# 克隆GitLab版本库
 sudo -u git -H git clone https://gitlab.com/gitlab-org/gitlab-ce.git -b 6-6-stable gitlab
 
-# Go to gitlab dir
+# 去gitlab目录
 cd /home/git/gitlab
 {% endhighlight %}
 **注意:**
-You can change `6-6-stable` to `master` if you want the *bleeding edge* version, but never install master on a production server!
+如果你想要*前沿*版本可以修改`6-6-stable`为`master`, 但是千万不能在生产服务器上安装最高版本!
 
 ## 配置
 {% highlight sh linenos %}
 cd /home/git/gitlab
 
-# Copy the example GitLab config
+# 拷贝样例GitLab配置
 sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml
 
-# Make sure to change "localhost" to the fully-qualified domain name of your
-# host serving GitLab where necessary
+# 请务必在必要时修改“localhost”为你服务GitLab主机的完整域名
 #
-# If you installed Git from source, change the git bin_path to /usr/local/bin/git
+# 如果你从源代码安装的Git，改变GIT bin_path到/usr/local/bin/git
+
 sudo -u git -H editor config/gitlab.yml
 
-# Make sure GitLab can write to the log/ and tmp/ directories
+# 确认GitLab能写 log/ 和 tmp/ 目录
 sudo chown -R git log/
 sudo chown -R git tmp/
 sudo chmod -R u+rwX  log/
 sudo chmod -R u+rwX  tmp/
 
-# Create directory for satellites
+# 为satellites创建目录
 sudo -u git -H mkdir /home/git/gitlab-satellites
 
-# Create directories for sockets/pids and make sure GitLab can write to them
+# 为sockets/pids创建目录，并确认GitLab能写如它们
 sudo -u git -H mkdir tmp/pids/
 sudo -u git -H mkdir tmp/sockets/
 sudo chmod -R u+rwX  tmp/pids/
 sudo chmod -R u+rwX  tmp/sockets/
 
-# Create public/uploads directory otherwise backup will fail
+# 创建public/uploads目录，否则备份将失败
 sudo -u git -H mkdir public/uploads
 sudo chmod -R u+rwX  public/uploads
 
-# Copy the example Unicorn config
+# 拷贝样例Unicorn配置
 sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb
 
-# Enable cluster mode if you expect to have a high load instance
-# Ex. change amount of workers to 3 for 2GB RAM server
+# 如果你期望有一个高负荷的实例启用群集模式
+# 例. 为2G内存服务器修改工作数为3
 sudo -u git -H editor config/unicorn.rb
 
-# Copy the example Rack attack config
+# 拷贝样例Rack attack配置
 sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
 
 # Configure Git global settings for git user, useful when editing via web
@@ -268,8 +281,10 @@ sudo -u git cp config/database.yml.postgresql config/database.yml
 # Change 'secure password' with the value you have given to $password
 # You can keep the double quotes around the password
 sudo -u git -H editor config/database.yml
+{% endhighlight %}
 
-or
+或者
+{% highlight sh linenos %}
 # Mysql
 sudo -u git cp config/database.yml.mysql config/database.yml
 
@@ -281,10 +296,10 @@ sudo -u git -H chmod o-rwx config/database.yml
 {% highlight sh linenos %}
 cd /home/git/gitlab
 
-# For PostgreSQL (注意, the option says "without ... mysql")
+# 为PostgreSQL (注意, 选项​​说 "without ... mysql")
 sudo -u git -H bundle install --deployment --without development test mysql aws
 
-# Or if you use MySQL (注意, the option says "without ... postgres")
+# 或者如果你使用MySQL (注意, 选项​​说 "without ... postgres")
 sudo -u git -H bundle install --deployment --without development test postgres aws
 {% endhighlight %}
 
@@ -292,9 +307,9 @@ sudo -u git -H bundle install --deployment --without development test postgres a
 {% highlight sh linenos %}
 sudo -u git -H bundle exec rake gitlab:setup RAILS_ENV=production
 
-# Type 'yes' to create the database tables.
+# 输入'yes'创建数据库表.
 
-# When done you see 'Administrator account created:'
+# 做完你能看到'Administrator account created:'
 {% endhighlight %}
 
 ## 安装初始化脚本
@@ -318,7 +333,7 @@ sudo update-rc.d gitlab defaults 21
 
 ## 设置logrotate
 {% highlight sh %}
-    sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
+sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab
 {% endhighlight %}
 
 ## 检查应用现状
@@ -431,10 +446,10 @@ production: unix:/path/to/redis/socket
 If you are running SSH on a non-standard port, you must change the gitlab user's SSH config.
 {% highlight ini linenos %}
 # Add to /home/git/.ssh/config
-host localhost          # Give your setup a name (here: override localhost)
-    user git            # Your remote git user
-    port 2222           # Your port number
-    hostname 127.0.0.1; # Your server name or IP
+host localhost  # Give your setup a name (here: override localhost)
+user git# Your remote git user
+port 2222   # Your port number
+hostname 127.0.0.1; # Your server name or IP
 {% endhighlight %}
 
 You also need to change the corresponding options (e.g. ssh_user, ssh_host, admin_uri) in the `config\gitlab.yml` file.
