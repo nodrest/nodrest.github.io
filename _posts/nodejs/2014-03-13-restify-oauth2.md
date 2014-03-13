@@ -42,7 +42,7 @@ restifyOAuth2.ropc(server, options);
 
 不幸的是, Restify–OAuth2不能成为一个简单的Restify插件. 它需要为令牌终端安装一个路由,而插件只是在每次请求时运行，不修改服务器的路由表.
 
-## 选项
+## 钩子选项
 
 传递给Restify–OAuth2的参数严重依赖你选择的两个流中的一个。一些选项在所有流中通用, 但是`options.hooks`哈希将取决于流变化. 一旦您提供相应的钩子, 你会免费得到一个OAuth 2实现.
 
@@ -79,13 +79,13 @@ Checks that the API client是authenticating on behalf of a real user with correc
 检测令牌是否有效, i.e. that it was granted in the past by `grantUserToken`. It should call back with the
 username for that token if so, or `false` if the token是invalid. It can also call back with an error if there was some internal server error while looking up the token.
 
-### 其他操作
+## 其他选项
 
-The `hooks` hash是the only required option, but the following are also available for tweaking:
+`hooks`哈系是唯一必须选项, 但是以下调整选项可用:
 
-* `tokenEndpoint`: the location at which the token endpoint should be created. 默认是`"/token"`.
-* `wwwAuthenticateRealm`: the value of the "Realm" challenge in the `WWW-Authenticate` header. Defaults to `"Who goes there?"`.
-* `tokenExpirationTime`: the value returned for the `expires_in` component of the response from the token endpoint. Note that this是*only* the value reported; you are responsible for keeping track of token expiration yourself and calling back with `false` from `authenticateToken` when the token expires. Defaults to `Infinity`.
+* `tokenEndpoint`: 创建令牌终端的地址. 默认是`"/token"`.
+* `wwwAuthenticateRealm`: 在`WWW-Authenticate`头里的"Realm"盘问值. 默认是`"Who goes there?"`.
+* `tokenExpirationTime`: the value returned for the `expires_in` component of the response from the token endpoint. Note that this是*only* the value reported; you are responsible for keeping track of token expiration yourself and calling back with `false` from `authenticateToken` when the token expires. 默认无限`Infinity`.
 
 ## 看起来像什么？
 
