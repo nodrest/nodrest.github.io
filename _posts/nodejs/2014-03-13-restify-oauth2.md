@@ -27,7 +27,7 @@ tags : [nodejs, restful, OAuth2]
 
 使用Restify–OAuth2, 你需要传递给你的服务插件一些选项, 包括下面提及的钩子.Restify–OAuth2同时依赖内建的`authorizationParser` 和 `bodyParser` 插件, 后者 的`mapParams`参数设为`false`. 简言之, 如下:
 
-```js
+{% highlight js linenos %}
 var restify = require("restify");
 var restifyOAuth2 = require("restify-oauth2");
 
@@ -38,7 +38,7 @@ server.use(restify.bodyParser({ mapParams: false }));
 restifyOAuth2.cc(server, options);
 // or
 restifyOAuth2.ropc(server, options);
-```
+{% endhighlight %}
 
 不幸的是, Restify–OAuth2不能成为一个简单的Restify插件. 它需要为令牌终端安装一个路由,而插件只是在每次请求时运行，不修改服务器的路由表.
 
