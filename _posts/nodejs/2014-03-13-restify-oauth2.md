@@ -8,7 +8,7 @@ tags : [nodejs, restful, OAuth2]
 
 __Restify的OAuth 2终端__,本包为[Restify][]框架提供一个*非常简单*的OAuth 2.0 终端. 特别是, 它只实现了[客户端凭证][cc]和[资源所有者密码认证][ropc] 流量.
 
-## 你会得到什么
+## 你会得到什么?
 
 如果你提供Restify–OAuth2,并使用合适的钩子, 它将:
 
