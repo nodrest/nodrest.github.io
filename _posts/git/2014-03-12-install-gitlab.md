@@ -296,7 +296,17 @@ sudo -u git -H chmod o-rwx config/database.yml
 
 修改Gemfile：
 
-    source:http://ruby.taobao.org/
+{% highlight sh%}
+vim Gemfile
+{% endhighlight %}
+
+{% highlight ruby linenos%}
+#修改source
+#或者使用清华的镜像（未验证）
+#指定 ipv4 的話用 http://mirrors.4.tuna.tsinghua.edu.cn/rubygems/
+#指定 ipv6 的話用 http://mirrors.6.tuna.tsinghua.edu.cn/rubygems/
+source "http://ruby.taobao.org/"
+{% endhighlight %}
 
 {% highlight sh linenos %}
 cd /home/git/gitlab
