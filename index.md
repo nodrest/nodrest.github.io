@@ -50,8 +50,8 @@ tagline: Node Rest Service
 [Standard JSON Response for Rails and jQuery]:http://paydrotalks.com/posts/45-standard-json-response-for-rails-and-jquery/
 [json-schem]: http://json-schema.org/
 [grunt-apidoc]: https://github.com/apidoc/grunt-apidoc
-[[node-gitlab-deploy]: https://github.com/jpillora/node-gitlab-deploy
+[node-gitlab-deploy]: https://github.com/jpillora/node-gitlab-deploy
 [GitLab]: https://github.com/gitlabhq/gitlabhq
-[gitlab-shell]:https://github.com/gitlabhq/gitlab-shell
+[gitlab-shell]: https://github.com/gitlabhq/gitlab-shell
 [Gitlab-ci]: https://github.com/gitlabhq/gitlab-ci
 [Gitlab-ci-runner]: https://github.com/gitlabhq/gitlab-ci-runner
