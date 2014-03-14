@@ -24,6 +24,7 @@ tagline: Node Rest Service
 
 [Hypertext Application Language][hal]
 [JSON API][json-api]
+[Api文档生成][]
 [自动生成api文档][grunt-apidoc]
 
 ## 版本和部署
@@ -55,3 +56,4 @@ tagline: Node Rest Service
 [gitlab-shell]: https://github.com/gitlabhq/gitlab-shell
 [Gitlab-ci]: https://github.com/gitlabhq/gitlab-ci
 [Gitlab-ci-runner]: https://github.com/gitlabhq/gitlab-ci-runner
+[apidoc]: http://nodrest.github.io/apidocjsdoc
