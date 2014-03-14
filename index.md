@@ -24,7 +24,7 @@ tagline: Node Rest Service
 
 [Hypertext Application Language][hal]
 [JSON API][json-api]
-[Api文档生成][]
+[Api文档生成][apidoc]
 [自动生成api文档][grunt-apidoc]
 
 ## 版本和部署
