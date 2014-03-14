@@ -24,6 +24,15 @@ tagline: Node Rest Service
 
 [Hypertext Application Language][hal]
 [JSON API][json-api]
+[自动生成api文档][grunt-apidoc]
+
+## 版本和部署
+
+[版本管理][GitLab]
+[版本壳][gitlab-shell]
+[持续集成][Gitlab-ci]
+[集成进程][Gitlab-ci-runner]
+[部署][node-gitlab-deploy]
 
 
 
@@ -40,3 +49,9 @@ tagline: Node Rest Service
 [oData]:http://www.odata.org/documentation/odata-version-2-0/json-format/
 [Standard JSON Response for Rails and jQuery]:http://paydrotalks.com/posts/45-standard-json-response-for-rails-and-jquery/
 [json-schem]: http://json-schema.org/
+[grunt-apidoc]: https://github.com/apidoc/grunt-apidoc
+[[node-gitlab-deploy]: https://github.com/jpillora/node-gitlab-deploy
+[GitLab]: https://github.com/gitlabhq/gitlabhq
+[gitlab-shell]:https://github.com/gitlabhq/gitlab-shell
+[Gitlab-ci]: https://github.com/gitlabhq/gitlab-ci
+[Gitlab-ci-runner]: https://github.com/gitlabhq/gitlab-ci-runner
